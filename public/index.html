@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allison's Development Environment</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f4f6f9; color: #1a1a2e; min-height: 100vh; }
+
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 2.5rem 2rem 2rem;
+    }
+    header h1 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+    header p { font-size: 0.9rem; opacity: 0.55; }
+
+    main { max-width: 680px; margin: 2.5rem auto; padding: 0 1.5rem; }
+
+    section { margin-bottom: 2.5rem; }
+    section h2 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+      margin-bottom: 0.75rem;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: white;
+      border: 1px solid #dde2ec;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.6rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s;
+    }
+    .item:hover { border-color: #4f6ef7; }
+    .item-left h3 { font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .item-left p { font-size: 0.8rem; color: #888; }
+    .arrow { color: #ccc; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Allison's Development Environment</h1>
+  <p>Prototypes and projects built with Claude Code</p>
+</header>
+
+<main>
+  <section>
+    <h2>Demos &amp; Apps</h2>
+    <a class="item" href="supply_chain_marketplace/">
+      <div class="item-left">
+        <h3>Supply Chain Marketplace</h3>
+        <p>Interactive supplier, product, and order demo</p>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+  </section>
+
+  <section>
+    <h2>Recipes</h2>
+    <a class="item" href="recipes/green-smoothie.html">
+      <div class="item-left">
+        <h3>Classic Green Smoothie</h3>
+        <p>Mise en place layout</p>
+      </div>
+      <span class="arrow">›</span>
+    </a>
+  </section>
+</main>
+
+</body>
+</html>

@@ -20,7 +20,7 @@ Live site: [thundercat1.github.io/allison-development-environment](https://thund
 
 This repo has two layers:
 
-**1. A public website** hosted on GitHub Pages. Any time changes are pushed to `main`, the site updates automatically within about 60 seconds. Not everything in the repo is published — only what's linked from the site.
+**1. A public website** hosted on GitHub Pages — everything inside the `public/` folder. Any time changes are pushed to `main`, the site updates automatically within about 60 seconds.
 
 **2. Python projects** managed with `uv`. These run locally and aren't part of the website.
 
@@ -47,9 +47,9 @@ This repo has two layers:
 
 ## Local site preview
 
-To preview the Jekyll site on your own machine before pushing:
+To preview the site on your own machine before pushing:
 
 ```bash
-gem install bundler jekyll   # one-time setup
-bundle exec jekyll serve     # then visit http://localhost:4000
+cd public && python3 -m http.server 8000
+# then visit http://localhost:8000
 ```

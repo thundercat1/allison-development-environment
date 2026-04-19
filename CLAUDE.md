@@ -20,21 +20,15 @@ To add a Python project as a uv package when needed:
 
 ## Public site (GitHub Pages)
 
-The repo publishes to `https://thundercat1.github.io/allison-development-environment/` via Jekyll.
+The repo publishes to `https://thundercat1.github.io/allison-development-environment/` as a plain static site (no Jekyll).
 
-**Before making any area of the repo public:**
-1. Confirm with the user whether the project/content should be publicly visible
-2. If not, add it to the `exclude:` list in `_config.yml`
-3. If yes, make sure it's linked from `index.md`
+**The rule is simple: if it's inside `public/`, it's on the website. If it's outside `public/`, it's not.**
+
+**Before adding anything to `public/`**, confirm with the user that it's intended to be publicly visible on the site.
 
 **Before every `git push`**, remind Allison that pushing will update the live public website within ~60 seconds. For major visual changes, suggest running a local preview first (see below).
 
-### What Jekyll publishes vs. skips
-- `.html` and `.md` files are published (Jekyll passes raw HTML through untouched)
-- Anything in the `exclude:` list in `_config.yml` is not published to the site
-- `hello_world/` and Python packaging files (`*.toml`, `*.lock`) are already excluded
-
-> **IMPORTANT: `_config.yml` is NOT a privacy control.** The repo is public. Everything pushed to it is visible to anyone on GitHub — `_config.yml` only controls what appears on the website. If something is sensitive (API keys, personal data, private work), it must never be committed to this repo at all. Use `.gitignore` to prevent accidental commits, and confirm with the user before pushing anything that could contain sensitive content.
+> **IMPORTANT: The repo is fully public on GitHub.** Everything pushed to it — inside or outside `public/` — is visible to anyone on GitHub. `public/` only controls what appears on the website. If something is sensitive (API keys, personal data, private work), it must never be committed to this repo at all. Use `.gitignore` to prevent accidental commits, and confirm with the user before pushing anything that could contain sensitive content.
 
 ## Static vs. interactive
 
@@ -50,20 +44,16 @@ Only reach for Flask + SQLite when static genuinely won't work.
 - **Always warn before `git push`** that it will update the live public site.
 - **Suggest a local preview** before pushing if: (a) the user asks, (b) something looks broken, or (c) the change is a major visual update.
 
-## Local preview (Jekyll)
+## Local preview
 
 Use this to preview the site locally without pushing. Only run when debugging or when the user asks.
 
 ```bash
-# Requires Ruby + Bundler. Run once to install:
-gem install bundler jekyll
-
-# Then to preview:
-bundle exec jekyll serve
-# Site will be at http://localhost:4000
+cd public && python3 -m http.server 8000
+# Site will be at http://localhost:8000
 ```
 
-If Jekyll isn't installed or throws errors, diagnose before pushing — don't push blind and rely on GitHub Actions to catch it.
+No dependencies needed — Python is already installed.
 
 ## Running Python projects
 
