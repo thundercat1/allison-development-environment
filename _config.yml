@@ -1,0 +1,8 @@
+title: Allison's Development Environment
+description: Prototypes and projects built with Claude Code.
+theme: minima
+
+exclude:
+  - hello_world/
+  - "*.lock"
+  - "*.toml"
