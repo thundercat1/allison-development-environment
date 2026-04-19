@@ -1,0 +1,2 @@
+[tool.uv.workspace]
+members = ["hello_world", "supply_chain_marketplace"]
