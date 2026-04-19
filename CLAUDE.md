@@ -20,7 +20,7 @@ To add a Python project as a uv package when needed:
 
 ## Public site (GitHub Pages)
 
-The repo publishes to `https://thundercat1.github.io/allison-development-environment/` as a plain static site (no Jekyll).
+The repo publishes to `https://thundercat1.github.io/allison-public-code/` as a plain static site (no Jekyll).
 
 **The rule is simple: if it's inside `public/`, it's on the website. If it's outside `public/`, it's not.**
 
@@ -66,12 +66,14 @@ In Allison's own terminal, `uv` works normally.
 
 ## Git
 
+**Branch strategy: commit and push directly to `main` by default.** Only create a branch or PR if Allison explicitly asks for one.
+
 Credentials are stored in macOS Keychain via `git credential-osxkeychain`. Pushes should work without prompting.
 
 If a push fails with auth errors, check that the remote URL doesn't have a token embedded:
 ```bash
 git remote -v
-# Should show: https://github.com/thundercat1/allison-development-environment.git
+# Should show: https://github.com/thundercat1/allison-public-code.git
 # NOT: https://oauth2:token@github.com/...
 ```
 
