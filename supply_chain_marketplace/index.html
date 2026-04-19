@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supply Chain Marketplace</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f4f6f9; color: #1a1a2e; }
+
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 { font-size: 1.2rem; letter-spacing: 0.05em; }
+    header span { font-size: 0.85rem; opacity: 0.6; }
+
+    .tabs {
+      display: flex;
+      gap: 0;
+      background: white;
+      border-bottom: 1px solid #dde2ec;
+      padding: 0 2rem;
+    }
+    .tab {
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border-bottom: 3px solid transparent;
+      color: #666;
+    }
+    .tab.active { border-bottom-color: #4f6ef7; color: #4f6ef7; font-weight: 600; }
+
+    .view { display: none; padding: 2rem; }
+    .view.active { display: block; }
+
+    h2 { font-size: 1rem; margin-bottom: 1.25rem; color: #333; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.25rem;
+      border: 1px solid #dde2ec;
+    }
+    .card h3 { font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .card p { font-size: 0.82rem; color: #666; margin-bottom: 0.6rem; }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 99px;
+      font-weight: 600;
+    }
+    .badge.green { background: #e6f9f0; color: #1a7f4b; }
+    .badge.yellow { background: #fff8e1; color: #a07000; }
+    .badge.blue { background: #e8eeff; color: #3050c8; }
+
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #dde2ec; font-size: 0.875rem; }
+    th { background: #f8f9fc; text-align: left; padding: 0.75rem 1rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888; }
+    td { padding: 0.75rem 1rem; border-top: 1px solid #f0f2f7; }
+
+    .stat-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .stat {
+      background: white;
+      border: 1px solid #dde2ec;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      flex: 1;
+    }
+    .stat .label { font-size: 0.78rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+    .stat .value { font-size: 1.6rem; font-weight: 700; color: #1a1a2e; margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Supply Chain Marketplace</h1>
+  <span>Demo Environment</span>
+</header>
+
+<nav class="tabs">
+  <div class="tab active" onclick="show('suppliers', this)">Suppliers</div>
+  <div class="tab" onclick="show('products', this)">Products</div>
+  <div class="tab" onclick="show('orders', this)">Orders</div>
+</nav>
+
+<div id="suppliers" class="view active">
+  <div class="stat-bar">
+    <div class="stat"><div class="label">Active Suppliers</div><div class="value">12</div></div>
+    <div class="stat"><div class="label">Avg Lead Time</div><div class="value">8d</div></div>
+    <div class="stat"><div class="label">On-time Rate</div><div class="value">94%</div></div>
+  </div>
+  <h2>Registered Suppliers</h2>
+  <div class="cards" id="supplier-cards"></div>
+</div>
+
+<div id="products" class="view">
+  <h2>Product Catalog</h2>
+  <div class="cards" id="product-cards"></div>
+</div>
+
+<div id="orders" class="view">
+  <h2>Recent Orders</h2>
+  <table>
+    <thead>
+      <tr><th>Order ID</th><th>Supplier</th><th>Product</th><th>Qty</th><th>Status</th><th>ETA</th></tr>
+    </thead>
+    <tbody id="order-rows"></tbody>
+  </table>
+</div>
+
+<script>
+  const suppliers = [
+    { name: "Apex Components", region: "Taiwan", category: "Electronics", status: "Active" },
+    { name: "GreenLeaf Materials", region: "Germany", category: "Raw Materials", status: "Active" },
+    { name: "FastParts Co.", region: "Mexico", category: "Mechanical", status: "Active" },
+    { name: "NorthStar Logistics", region: "Canada", category: "Logistics", status: "Pending" },
+    { name: "BrightMetal Works", region: "South Korea", category: "Metals", status: "Active" },
+    { name: "SunRise Textiles", region: "India", category: "Textiles", status: "Active" },
+  ];
+
+  const products = [
+    { name: "Circuit Board A4", supplier: "Apex Components", unit: "PCB", price: "$12.40", stock: "In Stock" },
+    { name: "Steel Rod 10mm", supplier: "BrightMetal Works", unit: "kg", price: "$3.80", stock: "Low Stock" },
+    { name: "Cotton Blend Fabric", supplier: "SunRise Textiles", unit: "meter", price: "$6.20", stock: "In Stock" },
+    { name: "Aluminum Sheet 2mm", supplier: "GreenLeaf Materials", unit: "m²", price: "$18.00", stock: "In Stock" },
+    { name: "Hex Bolt M8", supplier: "FastParts Co.", unit: "100pc", price: "$4.50", stock: "In Stock" },
+    { name: "Copper Wire 22AWG", supplier: "Apex Components", unit: "100m", price: "$9.90", stock: "Out of Stock" },
+  ];
+
+  const orders = [
+    { id: "ORD-1042", supplier: "Apex Components", product: "Circuit Board A4", qty: 500, status: "Shipped", eta: "Apr 22" },
+    { id: "ORD-1041", supplier: "FastParts Co.", product: "Hex Bolt M8", qty: 2000, status: "Processing", eta: "Apr 26" },
+    { id: "ORD-1040", supplier: "BrightMetal Works", product: "Steel Rod 10mm", qty: 300, status: "Delivered", eta: "Apr 18" },
+    { id: "ORD-1039", supplier: "SunRise Textiles", product: "Cotton Blend Fabric", qty: 150, status: "Shipped", eta: "Apr 23" },
+    { id: "ORD-1038", supplier: "GreenLeaf Materials", product: "Aluminum Sheet 2mm", qty: 80, status: "Delivered", eta: "Apr 15" },
+  ];
+
+  const statusColor = { Active: "green", Pending: "yellow", "In Stock": "green", "Low Stock": "yellow", "Out of Stock": "yellow", Shipped: "blue", Processing: "yellow", Delivered: "green" };
+
+  document.getElementById("supplier-cards").innerHTML = suppliers.map(s => `
+    <div class="card">
+      <h3>${s.name}</h3>
+      <p>${s.region} &middot; ${s.category}</p>
+      <span class="badge ${statusColor[s.status]}">${s.status}</span>
+    </div>`).join("");
+
+  document.getElementById("product-cards").innerHTML = products.map(p => `
+    <div class="card">
+      <h3>${p.name}</h3>
+      <p>${p.supplier} &middot; per ${p.unit}</p>
+      <p style="font-weight:600;font-size:1rem;margin-bottom:0.5rem">${p.price}</p>
+      <span class="badge ${statusColor[p.stock]}">${p.stock}</span>
+    </div>`).join("");
+
+  document.getElementById("order-rows").innerHTML = orders.map(o => `
+    <tr>
+      <td><code>${o.id}</code></td>
+      <td>${o.supplier}</td>
+      <td>${o.product}</td>
+      <td>${o.qty}</td>
+      <td><span class="badge ${statusColor[o.status]}">${o.status}</span></td>
+      <td>${o.eta}</td>
+    </tr>`).join("");
+
+  function show(id, tab) {
+    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    tab.classList.add("active");
+  }
+</script>
+</body>
+</html>
