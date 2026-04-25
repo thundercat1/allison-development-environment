@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fresh Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-leaf">🌿</span>
+        <span class="logo-text">Fresh<strong>Advisor</strong></span>
+      </div>
+      <nav class="dept-switcher" id="deptSwitcher"></nav>
+    </div>
+    <div class="header-right">
+      <span class="retailer-name" id="retailerName"></span>
+      <div class="header-user" id="headerUser"></div>
+      <div class="header-date" id="headerDate"></div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- WASTE HERO -->
+    <section class="waste-hero">
+      <div class="waste-hero-primary">
+        <div class="waste-main-stat">
+          <div class="waste-number-wrap">
+            <span class="waste-number" id="wasteNumber">0.0</span>
+            <span class="waste-unit">%</span>
+          </div>
+          <div class="waste-label">Produce Waste Rate</div>
+          <div class="waste-target-row">
+            <span class="waste-vs">vs</span>
+            <span class="waste-target-val" id="wasteTarget"></span>
+            <span class="waste-vs">target</span>
+            <span class="waste-status-pill" id="wasteStatusPill"></span>
+          </div>
+        </div>
+        <div class="waste-divider"></div>
+        <div class="waste-secondary-stats" id="secondaryStats"></div>
+      </div>
+      <div class="waste-hero-sub" id="recoTeaser"></div>
+    </section>
+
+    <!-- ALERTS STRIP -->
+    <div class="alerts-section">
+      <div class="alerts-label">Active signals</div>
+      <div class="alerts-strip" id="alertsStrip"></div>
+    </div>
+
+    <!-- AI RECOMMENDATIONS -->
+    <section class="section recommendations-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="section-icon">✦</span>
+          AI Recommendations
+        </h2>
+        <span class="section-subtitle" id="recoSubtitle"></span>
+      </div>
+      <div class="recommendations-grid" id="recommendationsGrid"></div>
+    </section>
+
+    <!-- MAIN CONTENT GRID -->
+    <div class="content-grid">
+
+      <!-- LEFT: SUPPLY CHAIN -->
+      <div class="content-left">
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Incoming Shipments</h2>
+            <span class="section-subtitle">This week</span>
+          </div>
+          <div class="shipments-list" id="shipmentsList"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Supplier Health</h2>
+          </div>
+          <div class="suppliers-list" id="suppliersList"></div>
+        </section>
+
+      </div>
+
+      <!-- RIGHT: INVENTORY -->
+      <div class="content-right">
+
+        <section class="section">
+          <div class="section-header">
+            <h2 class="section-title">Days of Supply</h2>
+            <span class="section-subtitle">By SKU vs shelf life</span>
+          </div>
+          <div class="inventory-table" id="inventoryTable"></div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- MARKET LANDSCAPE -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Market Landscape</h2>
+        <span class="section-subtitle">External signals affecting your category</span>
+      </div>
+      <div class="market-grid" id="marketGrid"></div>
+    </section>
+
+    <!-- STORE PERFORMANCE -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Waste by Store</h2>
+        <span class="section-subtitle">vs 7.0% target</span>
+      </div>
+      <div class="stores-grid" id="storesGrid"></div>
+    </section>
+
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
